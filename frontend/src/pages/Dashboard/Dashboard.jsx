@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "../../services/userService";
-import Navbar from "../../components/common/Navbar";
+import DashboardLayout from "../../components/dashboard/DashboardLayout";
+import SummaryCard from "../../components/dashboard/SummaryCard";
 
 function Dashboard() {
 
@@ -28,36 +29,45 @@ function Dashboard() {
   }
 
  return (
-  <>
-    <Navbar />
+  <DashboardLayout>
 
     <div className="container mt-5">
 
       <h1 className="mb-4">
         Welcome, {user.fullName}
       </h1>
-
-      <div className="card p-4 shadow">
-
-        <h4>User Information</h4>
-
-        <p>
-          <strong>ID:</strong> {user.id}
-        </p>
-
-        <p>
-          <strong>Email:</strong> {user.email}
-        </p>
-
-        <p>
-          <strong>Role:</strong> {user.role}
-        </p>
-
       </div>
 
-    </div>
-    </>
-  );
+      <div className="summary-grid">
+
+  <SummaryCard
+    type="balance"
+    title="Current Balance"
+    value="₹3,500"
+  />
+
+  <SummaryCard
+    type="account"
+    title="Account Number"
+    value="1001004054"
+  />
+
+  <SummaryCard
+    type="status"
+    title="Status"
+    value="ACTIVE"
+  />
+
+  <SummaryCard
+    type="transactions"
+    title="Transactions"
+    value="15"
+  />
+
+</div>
+
+  </DashboardLayout>
+);
 }
 
 export default Dashboard;

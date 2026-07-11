@@ -22,6 +22,7 @@ import com.novabank.dto.TransferRequest;
 import com.novabank.dto.TransferResponse;
 import java.util.List;
 import com.novabank.dto.TransactionResponse;
+import com.novabank.dto.AccountDetailsResponse;
 @Service
 @RequiredArgsConstructor
 public class AccountService {
@@ -187,5 +188,18 @@ public class AccountService {
                         transaction.getTransactionDate()
                 ))
                 .toList();
+    }
+    public AccountDetailsResponse getAccountDetails(String accountNumber) {
+
+        Account account = accountRepository.findByAccountNumber(accountNumber)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        return new AccountDetailsResponse(
+                account.getAccountNumber(),
+                account.getIfscCode(),
+                account.getBalance(),
+                account.getAccountType(),
+                account.getAccountStatus()
+        );
     }
 }

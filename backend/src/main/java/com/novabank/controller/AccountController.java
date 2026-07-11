@@ -13,6 +13,7 @@ import com.novabank.dto.TransferRequest;
 import com.novabank.dto.TransferResponse;
 import com.novabank.dto.TransactionResponse;
 import java.util.List;
+import com.novabank.dto.AccountDetailsResponse;
 @RestController
 @RequestMapping("/api/account")
 @RequiredArgsConstructor
@@ -43,5 +44,11 @@ public class AccountController {
     @GetMapping("/transactions/{accountNumber}")
     public List<TransactionResponse> getTransactionHistory(@PathVariable String accountNumber) {
         return accountService.getTransactionHistory(accountNumber);
+    }
+    @GetMapping("/{accountNumber}")
+    public AccountDetailsResponse getAccountDetails(
+            @PathVariable String accountNumber) {
+
+        return accountService.getAccountDetails(accountNumber);
     }
 }

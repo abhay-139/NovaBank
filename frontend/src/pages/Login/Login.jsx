@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login } from "../../services/authService";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaUniversity } from "react-icons/fa";
 
 function Login() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ function Login() {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [loading, setLoading] = useState(false);
+const [showPassword, setShowPassword] = useState(false);
 
 const handleLogin = async (e) => {
   e.preventDefault();
@@ -43,31 +45,51 @@ navigate("/dashboard");
       <div className="row h-100">
 
         {/* Left Side */}
-        <div className="col-md-6 d-none d-md-flex bg-primary text-white justify-content-center align-items-center">
+        <div
+  className="col-md-6 d-none d-md-flex text-white justify-content-center align-items-center"
+  style={{
+    background: "linear-gradient(135deg,#2563EB,#1E40AF)"
+  }}
+>
           <div className="text-center">
-            <h1 className="display-3 fw-bold">NovaBank</h1>
+            <h1 className="display-3 fw-bold">
+  NovaBank
+</h1>
 
-            <h3 className="mt-4">
-              Secure Digital Banking
-            </h3>
+<h3 className="mt-4">
+  Secure Digital Banking
+</h3>
 
-            <p className="mt-3 fs-5">
-              Fast • Safe • Trusted
-            </p>
+<p className="mt-3 fs-5">
+  Your money. Your control.
+</p>
           </div>
         </div>
 
         {/* Right Side */}
         <div className="col-md-6 d-flex justify-content-center align-items-center">
 
-          <div
-            className="card shadow-lg p-5"
-            style={{ width: "420px", borderRadius: "20px" }}
-          >
+         <div
+  className="auth-card"
+  style={{ width: "430px" }}
+>
 
-           <h2 className="text-center mb-4">
+           <div className="text-center mb-4">
+
+    <FaUniversity
+        size={55}
+        color="#2563EB"
+    />
+
+    <h2 className="page-title text-center mt-3">
   Welcome Back
 </h2>
+
+<p className="page-subtitle text-center mb-4">
+  Login to continue
+</p>
+
+</div>
 
 <form onSubmit={handleLogin} autoComplete="off">
 
@@ -81,15 +103,37 @@ navigate("/dashboard");
   autoComplete="off"
 />
 
-<Input
-  label="Password"
-  type="password"
-  name="password"
-  placeholder="Enter your password"
-  value={password}
-  onChange={(e) => setPassword(e.target.value)}
-  autoComplete="new-password"
-/>
+<div className="mb-4">
+  <label className="form-label fw-semibold">
+    Password
+  </label>
+
+  <div className="input-group">
+
+    <span className="input-group-text">
+      <FaLock />
+    </span>
+
+    <input
+      type={showPassword ? "text" : "password"}
+      className="form-control"
+      placeholder="Enter your password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      autoComplete="new-password"
+      style={{ height: "50px" }}
+    />
+
+    <button
+      type="button"
+      className="btn btn-outline-secondary"
+      onClick={() => setShowPassword(!showPassword)}
+    >
+      {showPassword ? <FaEyeSlash /> : <FaEye />}
+    </button>
+
+  </div>
+</div>
 
 <Button
   title={loading ? "Logging in..." : "Login"}

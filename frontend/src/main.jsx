@@ -8,6 +8,10 @@ import "./index.css";
 import App from "./App.jsx";
 
 import { ToastContainer } from "react-toastify";
+import "./styles/theme.css";
+import "./styles/globals.css";
+import "./styles/auth.css";
+import "./styles/dashboard.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

@@ -12,7 +12,7 @@ function Input({
       <label className="form-label">{label}</label>
 
       <input
-        className="form-control"
+        className="form-control input-box"
         type={type}
         name={name}
         placeholder={placeholder}

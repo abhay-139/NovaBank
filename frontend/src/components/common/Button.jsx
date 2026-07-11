@@ -7,9 +7,9 @@ function Button({
   return (
     <button
       type={type}
-      className="btn btn-primary w-100 mt-3"
       disabled={disabled}
       onClick={onClick}
+      className="btn primary-btn w-100 mt-3"
     >
       {title}
     </button>
