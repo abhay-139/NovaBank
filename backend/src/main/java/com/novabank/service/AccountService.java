@@ -23,6 +23,7 @@ import com.novabank.dto.TransferResponse;
 import java.util.List;
 import com.novabank.dto.TransactionResponse;
 import com.novabank.dto.AccountDetailsResponse;
+import org.springframework.security.core.Authentication;
 @Service
 @RequiredArgsConstructor
 public class AccountService {
@@ -193,6 +194,21 @@ public class AccountService {
 
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        return new AccountDetailsResponse(
+                account.getAccountNumber(),
+                account.getIfscCode(),
+                account.getBalance(),
+                account.getAccountType(),
+                account.getAccountStatus()
+        );
+    }
+
+    public AccountDetailsResponse getMyAccount(Authentication authentication) {
+
+        Account account = accountRepository
+                .findFirstByUserEmailOrderByCreatedAtAsc(authentication.getName())
+                .orElseThrow(() -> new RuntimeException("Account not found for authenticated user"));
 
         return new AccountDetailsResponse(
                 account.getAccountNumber(),

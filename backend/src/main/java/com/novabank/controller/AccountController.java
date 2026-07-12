@@ -14,6 +14,7 @@ import com.novabank.dto.TransferResponse;
 import com.novabank.dto.TransactionResponse;
 import java.util.List;
 import com.novabank.dto.AccountDetailsResponse;
+import org.springframework.security.core.Authentication;
 @RestController
 @RequestMapping("/api/account")
 @RequiredArgsConstructor
@@ -50,5 +51,10 @@ public class AccountController {
             @PathVariable String accountNumber) {
 
         return accountService.getAccountDetails(accountNumber);
+    }
+
+    @GetMapping("/me")
+    public AccountDetailsResponse getMyAccount(Authentication authentication) {
+        return accountService.getMyAccount(authentication);
     }
 }

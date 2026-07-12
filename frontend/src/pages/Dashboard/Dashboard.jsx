@@ -6,6 +6,7 @@ import SummaryCard from "../../components/dashboard/SummaryCard";
 function Dashboard() {
 
   const [user, setUser] = useState(null);
+  const [account, setAccount] = useState(null);
 
   useEffect(() => {
     loadUser();
