@@ -4,21 +4,30 @@ const transactionStyles = {
   TRANSFER: "bg-primary-subtle text-primary-emphasis",
 };
 
-const formatCurrency = (amount) =>
-  new Intl.NumberFormat("en-IN", {
+const formatCurrency = (amount) => {
+  if (amount == null) return "₹0.00";
+
+  return new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
     maximumFractionDigits: 2,
   }).format(amount);
+};
 
-const formatDateTime = (dateTime) =>
-  new Intl.DateTimeFormat("en-IN", {
+const formatDateTime = (dateTime) => {
+  if (!dateTime) return "-";
+
+  return new Intl.DateTimeFormat("en-IN", {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(dateTime));
+};
 
-const formatType = (type) =>
-  type.charAt(0) + type.slice(1).toLowerCase();
+const formatType = (type) => {
+  if (!type) return "Unknown";
+
+  return type.charAt(0) + type.slice(1).toLowerCase();
+};
 
 function TransactionTable({ transactions }) {
   return (
