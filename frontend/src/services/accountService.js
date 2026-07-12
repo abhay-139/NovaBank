@@ -9,3 +9,12 @@ export const getMyAccount = async () => {
   const response = await api.get("/account/me");
   return response.data;
 };
+
+export const deposit = async ({ accountNumber, amount }) => {
+  const response = await api.post("/account/deposit", {
+    accountNumber,
+    amount,
+  });
+
+  return response.data;
+};

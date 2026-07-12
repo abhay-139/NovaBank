@@ -6,6 +6,11 @@ function Input({
   value,
   onChange,
   autoComplete,
+  readOnly = false,
+  disabled = false,
+  min,
+  step,
+  inputMode,
 }) {
   return (
     <div className="mb-3">
@@ -19,6 +24,11 @@ function Input({
         value={value}
         onChange={onChange}
         autoComplete={autoComplete}
+        readOnly={readOnly}
+        disabled={disabled}
+        min={min}
+        step={step}
+        inputMode={inputMode}
       />
     </div>
   );
