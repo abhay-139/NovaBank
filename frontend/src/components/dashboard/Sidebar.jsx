@@ -9,17 +9,17 @@ import {
   FaSignOutAlt,
 } 
 from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const menuItems = [
-    { icon: <FaHome />, label: "Dashboard" },
-    { icon: <FaUniversity />, label: "Accounts" },
-    { icon: <FaArrowDown />, label: "Deposit" },
-    { icon: <FaArrowUp />, label: "Withdraw" },
-    { icon: <FaExchangeAlt />, label: "Transfer" },
-    { icon: <FaHistory />, label: "Transactions" },
-    { icon: <FaUser />, label: "Profile" },
+    { icon: <FaHome />, label: "Dashboard", path: "/dashboard" },
+    { icon: <FaUniversity />, label: "Accounts", path: "/accounts" },
+    { icon: <FaArrowDown />, label: "Deposit", path: "/deposit" },
+    { icon: <FaArrowUp />, label: "Withdraw", path: "/withdraw" },
+    { icon: <FaExchangeAlt />, label: "Transfer", path: "/transfer" },
+    { icon: <FaHistory />, label: "Transactions", path: "/transactions" },
+    { icon: <FaUser />, label: "Profile", path: "/profile" },
   ];
   const navigate = useNavigate();
 
@@ -36,21 +36,24 @@ const handleLogout = () => {
       </div>
 
       <div className="sidebar-menu">
-        {menuItems.map((item, index) => (
-          <div
-            key={index}
-            className={`sidebar-item ${
-              index === 0 ? "active-sidebar" : ""
-            }`}
-          >
-            <span className="sidebar-icon">
-              {item.icon}
-            </span>
-
-            <span>
-              {item.label}
-            </span>
-          </div>
+        {menuItems.map((item) => (
+          item.path ? (
+            <NavLink
+              key={item.label}
+              to={item.path}
+              className={({ isActive }) =>
+                `sidebar-item ${isActive ? "active-sidebar" : ""}`
+              }
+            >
+              <span className="sidebar-icon">{item.icon}</span>
+              <span>{item.label}</span>
+            </NavLink>
+          ) : (
+            <div key={item.label} className="sidebar-item">
+              <span className="sidebar-icon">{item.icon}</span>
+              <span>{item.label}</span>
+            </div>
+          )
         ))}
       </div>
 

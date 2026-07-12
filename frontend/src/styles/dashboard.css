@@ -135,3 +135,38 @@
     margin-top:30px;
 
 }
+
+.quick-action-card{
+    border:none;
+    color:var(--text-dark);
+    cursor:pointer;
+    min-height:190px;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.quick-action-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(37,99,235,.16);
+}
+
+.quick-action-card:focus-visible{
+    outline:3px solid rgba(37,99,235,.35);
+    outline-offset:3px;
+}
+
+.quick-action-icon{
+    align-items:center;
+    background:#EFF6FF;
+    border-radius:12px;
+    color:var(--primary);
+    display:inline-flex;
+    font-size:22px;
+    height:48px;
+    justify-content:center;
+    width:48px;
+}
+
+.quick-action-description{
+    color:var(--text-light);
+    font-size:14px;
+}
