@@ -18,3 +18,12 @@ export const deposit = async ({ accountNumber, amount }) => {
 
   return response.data;
 };
+
+export const withdraw = async ({ accountNumber, amount }) => {
+  const response = await api.post("/account/withdraw", {
+    accountNumber,
+    amount,
+  });
+
+  return response.data;
+};
