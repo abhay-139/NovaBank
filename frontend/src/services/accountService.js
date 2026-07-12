@@ -27,3 +27,17 @@ export const withdraw = async ({ accountNumber, amount }) => {
 
   return response.data;
 };
+
+export const transfer = async ({
+  fromAccountNumber,
+  toAccountNumber,
+  amount,
+}) => {
+  const response = await api.post("/account/transfer", {
+    fromAccountNumber,
+    toAccountNumber,
+    amount,
+  });
+
+  return response.data;
+};
